@@ -1,0 +1,30 @@
+﻿<Page x:Class="RandomApp.Pages.Page1"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RandomApp.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Page1">
+
+    <StackPanel>
+        <TextBlock
+            Margin="200 0 200 0"
+            FontSize="30"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Foreground="{StaticResource LightBrush}"
+            TextWrapping="Wrap">
+            Chào mừng tất cả CBCNV NMCĐ đến với vòng quay may mắn. Chúc mừng toàn thế CBCNV NMCĐ có 1 chuyến đi du lịch vui vẻ 
+            hạnh phúc, tràn đầy niềm vui, và ý nghĩa sau những ngày vất vả 
+            trên công trường nắng gió và đầy vất vả.
+        </TextBlock>
+        <Button
+            x:Name="BtnPage1"
+            Margin="0 30 0 0"
+            Click="BtnPage1_Click"
+            Style="{StaticResource ButtonApp}"
+            Content="Click to continue"/>
+    </StackPanel>
+</Page>

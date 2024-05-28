@@ -1,5 +1,8 @@
-﻿using RandomApp.Pages;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -10,28 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace RandomApp
+namespace RandomApp.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for Page1.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Page1 : Page
     {
-        public MainWindow()
+        public Page1()
         {
             InitializeComponent();
-            MainContent.Navigate(new Page1());
-
         }
 
-        public void NavigateToPage2()
+        private void BtnPage1_Click(object sender, RoutedEventArgs e)
         {
-            MainContent.Navigate(new Page2());
-        }
-
-        public void NavigateToPage3()
-        {
-            MainContent.Navigate(new Page3());
+            ((MainWindow)Application.Current.MainWindow).NavigateToPage2();
         }
     }
 }

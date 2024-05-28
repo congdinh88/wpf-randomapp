@@ -9,11 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Static\CoTo.jpg" />
     <None Remove="Static\DaoThanhLan.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Static\DaoThanhLan.jpg" />
+    <Resource Include="Static\CoTo.jpg" />
   </ItemGroup>
 
 </Project>

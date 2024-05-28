@@ -7,21 +7,13 @@
         xmlns:uc="clr-namespace:RandomApp.UserControlApp"
         mc:Ignorable="d"
         
-        Title="MainWindow" Height="450" MinWidth="850">
+        Title="MainWindow" Height="450" Width="850">
     <Window.Background>
-        <ImageBrush ImageSource="pack://application:,,,/Static/DaoThanhLan.jpg" Stretch="UniformToFill"/>
+        <ImageBrush ImageSource="pack://application:,,,/Static/CoTo.jpg" Stretch="UniformToFill"/>
     </Window.Background>
-    <Grid>
-        
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="3.5*"/>
-        </Grid.ColumnDefinitions>
-        <uc:Leftbar Margin="10"/>
-        <Border 
-            Grid.Column="1" 
-            Style="{StaticResource BorderApp}">
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="a"/>
-        </Border>
-    </Grid>
+    <Frame 
+        x:Name="MainContent"
+        NavigationUIVisibility="Hidden"
+        VerticalAlignment="Center">
+    </Frame>
 </Window>
