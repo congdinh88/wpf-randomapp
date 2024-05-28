@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Color x:Key="PrimaryColor">#0d6efd</Color>
+    <Color x:Key="SecondaryColor">#6c757d</Color>
+    <Color x:Key="SuccessColor">#198754</Color>
+    <Color x:Key="DangerColor">#dc3545</Color>
+    <Color x:Key="WarningyColor">#ffc107</Color>
+    <Color x:Key="InfoColor">#0dcaf0</Color>
+    <Color x:Key="LightColor">#fff</Color>
+    <Color x:Key="DarkColor">#212529</Color>
+    <Color x:Key="LinkColor">#0d9efe</Color>
+    <Color x:Key="BackgroundColor">#e2f1ff</Color>
+    <Color x:Key="FrameColor">#eeeef2</Color>
+
+    <Color x:Key="PrimaryColorHover">#175abe</Color>
+    <Color x:Key="SecondaryColorHover">#585e63</Color>
+    <Color x:Key="SuccessColorHover">#1d6343</Color>
+    <Color x:Key="DangerColorHover">#ab303b</Color>
+    <Color x:Key="WarningyColorHover">#bd9315</Color>
+    <Color x:Key="InfoColorHover">#1d96ae</Color>
+    <Color x:Key="LightColorHover">#cccccc</Color>
+    <Color x:Key="DarkColorHover">#2a2e32</Color>
+    <Color x:Key="LinkColorHover">#167cc0</Color>
+
+    <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+    <SolidColorBrush x:Key="SecondaryyBrush" Color="{StaticResource SecondaryColor}" />
+    <SolidColorBrush x:Key="SuccessBrush" Color="{StaticResource SuccessColor}" />
+    <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource DangerColor}" />
+    <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningyColor}" />
+    <SolidColorBrush x:Key="InfoBrush" Color="{StaticResource InfoColor}" />
+    <SolidColorBrush x:Key="LightBrush" Color="{StaticResource LightColor}" />
+    <SolidColorBrush x:Key="DarkBrush" Color="{StaticResource DarkColor}" />
+    <SolidColorBrush x:Key="LinkBrush" Color="{StaticResource LinkColor}" />
+    <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}" />
+    <SolidColorBrush x:Key="FrameBrush" Color="{StaticResource FrameColor}" />
+
+    <SolidColorBrush x:Key="PrimaryBrushHover" Color="{StaticResource PrimaryColorHover}" />
+    <SolidColorBrush x:Key="SecondaryyBrushHover" Color="{StaticResource SecondaryColorHover}" />
+    <SolidColorBrush x:Key="SuccessBrushHover" Color="{StaticResource SuccessColorHover}" />
+    <SolidColorBrush x:Key="DangerBrushHover" Color="{StaticResource DangerColorHover}" />
+    <SolidColorBrush x:Key="WarningBrushHover" Color="{StaticResource WarningyColorHover}" />
+    <SolidColorBrush x:Key="InfoBrushHover" Color="{StaticResource InfoColorHover}" />
+    <SolidColorBrush x:Key="LightBrushHover" Color="{StaticResource LightColorHover}" />
+    <SolidColorBrush x:Key="DarkBrushHover" Color="{StaticResource DarkColorHover}" />
+    <SolidColorBrush x:Key="LinkBrushHover" Color="{StaticResource LinkColorHover}" />
+</ResourceDictionary>
