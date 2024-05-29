@@ -9,7 +9,24 @@
       Title="Page3">
 
     <Grid>
-        <TextBlock Text="p3"/>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer 
+            Grid.Column="0"
+            VerticalScrollBarVisibility="Auto"
+            HorizontalScrollBarVisibility="Auto">
+            
+        </ScrollViewer>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

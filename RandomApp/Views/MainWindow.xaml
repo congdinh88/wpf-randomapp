@@ -7,13 +7,40 @@
         xmlns:uc="clr-namespace:RandomApp.UserControlApp"
         mc:Ignorable="d"
         
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontSize="13"
+     TextOptions.TextFormattingMode="Ideal"
+     TextOptions.TextRenderingMode="Auto"
+     FontFamily="{DynamicResource MaterialDesignFont}"
+        
         Title="MainWindow" Height="450" Width="850">
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Static/CoTo.jpg" Stretch="UniformToFill"/>
     </Window.Background>
-    <Frame 
-        x:Name="MainContent"
-        NavigationUIVisibility="Hidden"
-        VerticalAlignment="Center">
-    </Frame>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="847*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <ComboBox 
+                x:Name="comboBox"
+                SelectionChanged="comboBox_SelectionChanged"
+                Style="{StaticResource ComboBoxApp}"
+                HorizontalAlignment="Right">
+            </ComboBox>
+        </StackPanel>
+            <Frame 
+                x:Name="MainContent"
+                Grid.Row="1"
+                NavigationUIVisibility="Hidden"
+                VerticalAlignment="Center">
+            </Frame>
+    </Grid>
 </Window>
