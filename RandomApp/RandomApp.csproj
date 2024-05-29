@@ -11,9 +11,17 @@
   <ItemGroup>
     <None Remove="Static\CoTo.jpg" />
     <None Remove="Static\DaoThanhLan.jpg" />
+    <None Remove="Static\PersonnelList.xlsx" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Static\PersonnelList.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EPPlus" Version="7.1.3" />
     <PackageReference Include="MaterialDesignThemes" Version="5.0.0" />
   </ItemGroup>
 

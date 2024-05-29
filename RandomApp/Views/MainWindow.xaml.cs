@@ -19,12 +19,18 @@ namespace RandomApp
     public partial class MainWindow : Window
     {
         ObservableCollection<string> item {get;set;}
+        public static MainWindow Instance { get; private set; }
         public MainWindow()
         {
             InitializeComponent();
+            Instance = this;
             MainContent.Navigate(new Page1());
             comboBox.ItemsSource = PageShow();
             comboBox.Text=PageShow().FirstOrDefault()?.ToString();
+        }
+        public void Page2ToPage3(string message)
+        {
+            MainContent.Navigate(new Page3(message));
         }
 
         private string[] PageShow()
@@ -45,13 +51,13 @@ namespace RandomApp
 
         public void NavigateToPage3()
         {
-            MainContent.Navigate(new Page3());
+            MainContent.Navigate(new Page3(""));
             comboBox.Text = PageShow()[2].ToString();
         }
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string s = comboBox.Text;
+            string s = comboBox.SelectedValue.ToString();
             if (s != null)
             {
                 switch (s)
@@ -63,7 +69,7 @@ namespace RandomApp
                         MainContent.Navigate(new Page2());
                         break;
                     case "Page3":
-                        MainContent.Navigate(new Page3());
+                        MainContent.Navigate(new Page3(""));
                         break;
                 }
             }

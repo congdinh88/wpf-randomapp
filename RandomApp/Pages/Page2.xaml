@@ -35,13 +35,13 @@
         <Button
             x:Name="BtnPage2"
             Margin="0 30 0 0"
-            Click="BtnPage2_Click"
+            Click="BtnPage2_Click1"
             Style="{StaticResource ButtonApp}"
             Content="Đoàn 1"/>
         <Button
             x:Name="BtnPage"
             Margin="0 10 0 0"
-            Click="BtnPage2_Click"
+            Click="BtnPage2_Click2"
             Style="{StaticResource ButtonApp}"
             Content="Đoàn 2"/>
     </StackPanel>

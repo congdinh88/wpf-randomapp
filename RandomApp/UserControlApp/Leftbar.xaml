@@ -6,32 +6,21 @@
              xmlns:local="clr-namespace:RandomApp.UserControlApp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        
-        <Border 
-            Width="150"
-            Height="30"
-            CornerRadius="15"
-            BorderThickness="1"
-            Panel.ZIndex="2"
-            VerticalAlignment="Top"
-            BorderBrush="{StaticResource PrimaryBrush}">
-            <TextBlock 
-                x:Name="TextBlock1"
-                Foreground="{StaticResource PrimaryBrush}"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Text="Personnel list"/>
-        </Border>
-        <Border 
-            Margin="0 15 0 0"
-            CornerRadius="15"
-            BorderThickness="1"
-            VerticalAlignment="Stretch"
-            HorizontalAlignment="Stretch"
-            BorderBrush="{StaticResource PrimaryBrush}">
-            
-        </Border>
+    <StackPanel>
+        <StackPanel>
+            <TextBlock Text="Danh sách đoàn 1"/>
+        </StackPanel>
+        <StackPanel>
+            <DataGrid 
+                x:Name="ListPersonnel"
+                Background="Transparent">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Mã NV" Binding="{Binding Code}"/>
+                    <DataGridTextColumn Header="Họ và tên" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Vị trí CV" Binding="{Binding Workshop}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
 
-    </Grid>
+    </StackPanel>
 </UserControl>

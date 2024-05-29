@@ -23,6 +23,13 @@ namespace RandomApp.UserControlApp
         public Leftbar()
         {
             InitializeComponent();
+            this.DataContext = this;
         }
+    }
+    public class User
+    {
+        public string Code { get; set; }
+        public string Name { get; set; }
+        public string Workshop { get; set; }
     }
 }

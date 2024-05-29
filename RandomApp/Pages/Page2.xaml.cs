@@ -24,9 +24,16 @@ namespace RandomApp.Pages
         {
             InitializeComponent();
         }
-        private void BtnPage2_Click(object sender, RoutedEventArgs e)
+        private void BtnPage2_Click1(object sender, RoutedEventArgs e)
         {
             ((MainWindow)Application.Current.MainWindow).NavigateToPage3();
+            MainWindow.Instance.Page2ToPage3("Đoàn 1");
+        }
+
+        private void BtnPage2_Click2(object sender, RoutedEventArgs e)
+        {
+            ((MainWindow)Application.Current.MainWindow).NavigateToPage3();
+            MainWindow.Instance.Page2ToPage3("Đoàn 2");
         }
     }
 }
