@@ -14,20 +14,104 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer 
-            Grid.Column="0"
-            VerticalScrollBarVisibility="Auto"
-            HorizontalScrollBarVisibility="Auto">
-            <uc:Leftbar/>
-        </ScrollViewer>
+        
+        <Grid 
+            Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <TextBlock 
+                    x:Name="HeadeBar" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    TextDecorations="Underline"
+                    FontSize="14"
+                    Text="{Binding Text}"/>
+            </StackPanel>
+            <ScrollViewer 
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Auto"
+                Grid.Row="1">
+                <StackPanel  
+                    x:Name="ListPersonnel1">
+                </StackPanel>
+            </ScrollViewer >
+        </Grid>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0">
-                
+            <StackPanel 
+                Grid.Row="0" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <StackPanel 
+                    Margin="40"
+                    HorizontalAlignment="Center"
+                    >
+                    <TextBlock
+                        x:Name="txt1"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Text="Chào mừng đến với vòng quay giải: "/>
+                    <TextBlock
+                        x:Name="txt2"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Text="Đặc biệt"/>
+                </StackPanel>
+                <TextBlock
+                    Margin="40"
+                    x:Name="txt3"
+                    FontSize="100"
+                    HorizontalAlignment="Center"
+                    Text="HP6641"/>
+                <StackPanel
+                    Margin="40"
+                    HorizontalAlignment="Center"
+                    Orientation="Horizontal">
+                    
+                    <TextBlock 
+                        x:Name="txt4"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Text="Nguyen Van A"/>
+                    <TextBlock
+                        x:Name="txt5"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Margin="10 0"
+                        Text="-"/>
+                    <TextBlock
+                        x:Name="txt6"
+                        FontSize="40"
+                        HorizontalAlignment="Center"
+                        Text="Duong ong"/>
+                </StackPanel>
             </StackPanel>
+            <StackPanel 
+                Grid.Row="1"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <ComboBox 
+                    Margin="10"
+                    Style="{StaticResource ComboBoxApp}"></ComboBox>
+                <Button 
+                    x:Name="Btn1" 
+                    Content="Quay"
+                    Margin="10"
+                    Style="{StaticResource ButtonApp}"/>
+                <Button 
+                    x:Name="Btn2" 
+                    Content="Cập nhập"
+                    Margin="10"
+                    Style="{StaticResource ButtonApp}"/>
+            </StackPanel>
+            
         </Grid>
     </Grid>
 </Page>

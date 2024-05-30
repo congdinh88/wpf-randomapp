@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,35 +17,52 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static MaterialDesignThemes.Wpf.Theme;
 
 namespace RandomApp.Pages
 {
     /// <summary>
     /// Interaction logic for Page3.xaml
     /// </summary>
+    public class Str
+    {
+        public string str { get; set; }
+    }
     public partial class Page3 : Page
     {
-        public ObservableCollection<User> Personnel { get; set; }
+        public ObservableCollection<User> Personnel =new ObservableCollection<User>();
+        public string Text {  get; set; }
         public string s { get; set; }
         public Page3(string message)
         {
             InitializeComponent();
             this.DataContext=this;
-            s=message;
+            s= message;
             GetData();
             ShowList();
         }
         public void ShowList()
         {
-            
             Leftbar leftbar = new Leftbar();
             leftbar.ListPersonnel.ItemsSource = Personnel;
+            if (Personnel.Count > 0) { 
+                ListPersonnel1.Children.Add(leftbar);
+                switch (s)
+                {
+                    case "list1":
+                        HeadeBar.Text = "Danh sách DL đoàn 1";
+                        break;
+                    case "list2":
+                        HeadeBar.Text = "Danh sách DL đoàn 2";
+                        break;
+                }
+            }
         }
         public void GetData()
         {
             ExcelPackage.LicenseContext = LicenseContext.Commercial;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var fileInfo = new FileInfo(@"D:\WPF\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
+            var fileInfo = new FileInfo(@"D:\setup\PortableGit\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
 
             if (!fileInfo.Exists)
             {
@@ -58,11 +76,11 @@ namespace RandomApp.Pages
                 {
                     switch (s)
                     {
-                        case "Đoàn 1":
+                        case "list1":
                             var worksheet1 = package.Workbook.Worksheets["List1"];
                             ReadSheetData(worksheet1);
                             break;
-                        case "Đoàn 2":
+                        case "list2":
                             var worksheet2 = package.Workbook.Worksheets["List2"];
                             ReadSheetData(worksheet2);
                             break;
@@ -87,9 +105,8 @@ namespace RandomApp.Pages
                 string code = worksheet.Cells[i, 1].Text;
                 string name = worksheet.Cells[i, 2].Text;
                 string workshop = worksheet.Cells[i, 3].Text;
-                Personnel = new ObservableCollection<User>{new User { Code = code, Name = name, Workshop = workshop }};
+                Personnel.Add(new User { Code = code, Name = name, Workshop = workshop });
             }
-
         }
 
     }

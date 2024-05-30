@@ -7,17 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <StackPanel>
-            <TextBlock Text="Danh sách đoàn 1"/>
-        </StackPanel>
-        <StackPanel>
+        <StackPanel 
+            >
             <DataGrid 
+                IsReadOnly="True"
+                AutoGenerateColumns="False"
                 x:Name="ListPersonnel"
                 Background="Transparent">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Mã NV" Binding="{Binding Code}"/>
-                    <DataGridTextColumn Header="Họ và tên" Binding="{Binding Name}"/>
-                    <DataGridTextColumn Header="Vị trí CV" Binding="{Binding Workshop}"/>
+                    <DataGridTextColumn Width="auto" Header="Mã NV" Binding="{Binding Code}"/>
+                    <DataGridTextColumn Width="auto" Header="Họ và tên" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Width="auto" Header="Vị trí CV" Binding="{Binding Workshop}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

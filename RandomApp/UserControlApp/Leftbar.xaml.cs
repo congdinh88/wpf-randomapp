@@ -20,6 +20,7 @@ namespace RandomApp.UserControlApp
     /// </summary>
     public partial class Leftbar : UserControl
     {
+        public string Text {  get; set; }
         public Leftbar()
         {
             InitializeComponent();

@@ -36,7 +36,7 @@
                 x:Name="MainContent"
                 Grid.Row="1"
                 NavigationUIVisibility="Hidden"
-                VerticalAlignment="Center">
+                >
             </Frame>
     </Grid>
 </Window>
