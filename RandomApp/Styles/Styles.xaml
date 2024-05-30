@@ -34,7 +34,7 @@
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Border Background="{TemplateBinding Background}" 
                             BorderThickness="1" 
-                            BorderBrush="{StaticResource LightBrush}"  
+                            BorderBrush="{StaticResource PrimaryBrush}"  
                             CornerRadius="5">
                         <ContentPresenter 
                             HorizontalAlignment="Center" 
@@ -49,12 +49,35 @@
                 <Setter Property="Foreground" Value="{StaticResource LightBrush}"/>
             </Trigger>
         </Style.Triggers>
-        
-        
     </Style>
 
-    
-    
+    <Style x:Key="ButtonLink" TargetType="Button">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}" 
+                    BorderThickness="0" 
+                    BorderBrush="{StaticResource PrimaryBrush}"  
+                    CornerRadius="5">
+                        <ContentPresenter 
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{StaticResource LinkBrush}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+
 
     <ControlTemplate x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
         <Border x:Name="templateRoot" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
@@ -72,10 +95,9 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Padding" Value="10 0 0 0"/>
         <Setter Property="Height" Value="30"/>
-        <Setter Property="Width" Value="100"/>
+        <Setter Property="Width" Value="150"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="BorderBrush" Value="{StaticResource LightBrush}"/>
-        <Setter Property="Foreground" Value="{StaticResource LightBrush}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="BorderBrush" Value="{StaticResource PrimaryBrush}"/>

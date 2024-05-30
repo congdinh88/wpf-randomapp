@@ -5,26 +5,35 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:RandomApp.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="Page1">
 
-    <StackPanel>
+    <StackPanel VerticalAlignment="Center">
         <TextBlock
-            Margin="200 0 200 0"
+            Margin="300 0 300 0"
             FontSize="30"
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
-            Foreground="{StaticResource LightBrush}"
             TextWrapping="Wrap">
-            Chào mừng tất cả CBCNV NMCĐ đến với vòng quay may mắn. Chúc mừng toàn thế CBCNV NMCĐ có 1 chuyến đi du lịch vui vẻ 
-            hạnh phúc, tràn đầy niềm vui, và ý nghĩa sau những ngày vất vả 
-            trên công trường nắng gió và đầy vất vả.
+            Chào mừng toàn thế CBCNV đến với vòng quay may mắn.
+            BGĐ NMCĐ cám ơn toàn thể CNCNV đã gắn bó với NM đóng 
+            góp sức mình để NM càng lớn mạnh. Kính chúc toàn thể CBCNV có chuyến 
+            du lịch vui vẻ, hạnh phúc. Chúc toàn thể CBCNV 
+            may mắn dành được giải thưởng!
+
         </TextBlock>
         <Button
             x:Name="BtnPage1"
-            Margin="0 30 0 0"
+            Margin="310 0 300 0"
+            HorizontalAlignment="Left"
             Click="BtnPage1_Click"
-            Style="{StaticResource ButtonApp}"
-            Content="Click to continue"/>
+            Style="{StaticResource ButtonLink}"
+            >
+            <TextBlock 
+                FontSize="18"
+                FontStyle="Italic"
+                FontWeight="Light"
+                TextDecorations="Underline">(Nhấn vào đây để tiếp tục!)</TextBlock>
+        </Button>
     </StackPanel>
 </Page>

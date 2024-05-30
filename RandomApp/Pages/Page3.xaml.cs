@@ -24,10 +24,6 @@ namespace RandomApp.Pages
     /// <summary>
     /// Interaction logic for Page3.xaml
     /// </summary>
-    public class Str
-    {
-        public string str { get; set; }
-    }
     public partial class Page3 : Page
     {
         public ObservableCollection<User> Personnel =new ObservableCollection<User>();
@@ -40,7 +36,21 @@ namespace RandomApp.Pages
             s= message;
             GetData();
             ShowList();
+            CombApp.ItemsSource = ListComboBox();
         }
+        private string[] ListComboBox()
+        {
+            string[] strArray =
+            {
+                "Giải đặc biệt",
+                "Giải nhất",
+                "Giải nhì",
+                "Giải ba",
+                "Giải khuyến khích"
+            };
+            return strArray;
+        }
+
         public void ShowList()
         {
             Leftbar leftbar = new Leftbar();
@@ -62,7 +72,7 @@ namespace RandomApp.Pages
         {
             ExcelPackage.LicenseContext = LicenseContext.Commercial;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var fileInfo = new FileInfo(@"D:\setup\PortableGit\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
+            var fileInfo = new FileInfo(@"D:\WPF\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
 
             if (!fileInfo.Exists)
             {
@@ -109,5 +119,9 @@ namespace RandomApp.Pages
             }
         }
 
+        private void CombApp_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            txt2.Text=CombApp.SelectedValue.ToString();
+        }
     }
 }

@@ -9,40 +9,63 @@
       Title="Page2">
 
     <StackPanel 
+        VerticalAlignment="Center"
         HorizontalAlignment="Center">
-        <TextBlock HorizontalAlignment="Center"
-                   FontSize="20"
-                   Foreground="{StaticResource LightBrush}">Thể lệ:</TextBlock>
-        <TextBlock
-            FontSize="20"
-            Foreground="{StaticResource LightBrush}">
+        <StackPanel>
             
-            Vòng quay may mắn bao gồm:<LineBreak/>
-            <ListBox Foreground="{StaticResource LightBrush}" Background="Transparent" BorderThickness="0">
-                <ListViewItem Content="-Giải đặc biệt: 01 giải"/>
-                <ListViewItem Content="-Giải nhất: 02 giải"/>
-                <ListViewItem Content="-Giải nhì: 04 giải"/>
-                <ListViewItem Content="-Giải ba: 06 giải"/>
-                <ListViewItem Content="-Giải khuyến khích: 10 giải"/>
-            </ListBox> <LineBreak/>
-            Cách thức quay:<LineBreak/>
-            <ListView Foreground="{StaticResource LightBrush}" Background="Transparent" BorderThickness="0">
-                <ListViewItem >
-                    <TextBlock TextWrapping="Wrap" >-Chọn ngẫu nhiên CBCNV có mã <LineBreak/> nhân viên hiện trên màn hình</TextBlock>
-                </ListViewItem>
-</ListView> <LineBreak/>
-        </TextBlock>
-        <Button
-            x:Name="BtnPage2"
-            Margin="0 30 0 0"
-            Click="BtnPage2_Click1"
-            Style="{StaticResource ButtonApp}"
-            Content="Đoàn 1"/>
-        <Button
-            x:Name="BtnPage"
-            Margin="0 10 0 0"
-            Click="BtnPage2_Click2"
-            Style="{StaticResource ButtonApp}"
-            Content="Đoàn 2"/>
+            <TextBlock HorizontalAlignment="Center"
+                       FontSize="20"
+                       TextDecorations="Underline">Thể lệ:</TextBlock>
+            <TextBlock 
+                FontSize="20">
+                Vòng quay may mắn bao gồm:<LineBreak/>
+                <ListView 
+                    IsEnabled="False" 
+                    FontSize="16"
+                    Foreground="{StaticResource DarkBrush}"
+                    Background="Transparent" 
+                    BorderThickness="0">
+                    <ListViewItem Content="-Giải đặc biệt: 01 giải"/>
+                    <ListViewItem Content="-Giải nhất: 02 giải"/>
+                    <ListViewItem Content="-Giải nhì: 04 giải"/>
+                    <ListViewItem Content="-Giải ba: 06 giải"/>
+                    <ListViewItem Content="-Giải khuyến khích: 10 giải"/>
+                </ListView> <LineBreak/>
+                Cách thức quay:<LineBreak/>
+                <ListView 
+                    FontSize="16"
+                    Foreground="{StaticResource DarkBrush}"
+                    IsEnabled="False" 
+                    Background="Transparent" 
+                    BorderThickness="0">
+                    <ListViewItem >
+                        <TextBlock TextWrapping="Wrap" >
+                            -Máy tính chọn ngẫu nhiên CBCNV có mã <LineBreak/> 
+                            nhân viên trong đoàn du lịch hiện trên màn hình</TextBlock>
+                    </ListViewItem>
+                </ListView> <LineBreak/>
+                <Run 
+                    FontStyle="Italic"
+                    FontWeight="Light"
+                    TextDecorations="Underline"
+                    Foreground="{StaticResource SecondaryyBrushHover}"
+                    FontSize="14"> (Mời chọn đoàn du lịch để tiếp tục!)</Run>
+               
+            </TextBlock>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Button
+                x:Name="BtnPage2"
+                Margin="20"
+                Click="BtnPage2_Click1"
+                Style="{StaticResource ButtonApp}"
+                Content="Đoàn 1"/>
+            <Button
+                x:Name="BtnPage"
+                Margin="20"
+                Click="BtnPage2_Click2"
+                Style="{StaticResource ButtonApp}"
+                Content="Đoàn 2"/>
+        </StackPanel>
     </StackPanel>
 </Page>

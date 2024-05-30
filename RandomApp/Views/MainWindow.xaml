@@ -13,8 +13,8 @@
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      FontFamily="{DynamicResource MaterialDesignFont}"
-        
-        Title="MainWindow" Height="450" Width="850">
+        WindowStartupLocation="CenterScreen"
+        Title="MainWindow" Height="600" Width="1000">
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Static/CoTo.jpg" Stretch="UniformToFill"/>
     </Window.Background>
