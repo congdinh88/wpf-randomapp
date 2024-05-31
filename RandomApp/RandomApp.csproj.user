@@ -16,6 +16,9 @@
     <Compile Update="Pages\Page3.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="UserControlApp\BonusList.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="UserControlApp\Leftbar.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -31,6 +34,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Styles\Color.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="UserControlApp\BonusList.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="UserControlApp\Leftbar.xaml">

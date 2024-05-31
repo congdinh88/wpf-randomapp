@@ -1,4 +1,5 @@
-﻿using OfficeOpenXml;
+﻿using MaterialDesignThemes.Wpf;
+using OfficeOpenXml;
 using RandomApp.UserControlApp;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using static MaterialDesignThemes.Wpf.Theme;
 
 namespace RandomApp.Pages
@@ -26,7 +28,18 @@ namespace RandomApp.Pages
     /// </summary>
     public partial class Page3 : Page
     {
+        DispatcherTimer timer1 = new DispatcherTimer();
+        DispatcherTimer timer2 = new DispatcherTimer();
         public ObservableCollection<User> Personnel =new ObservableCollection<User>();
+        public ObservableCollection<User> prize1 = new ObservableCollection<User>();
+        public ObservableCollection<User> prize2 = new ObservableCollection<User>();
+        public ObservableCollection<User> prize3 = new ObservableCollection<User>();
+        public ObservableCollection<User> prize4 = new ObservableCollection<User>();
+        public ObservableCollection<User> prize5 = new ObservableCollection<User>();
+        Random random = new Random();
+        int count = 15;
+        bool start = false, b1 = false, b2 = false, b3 = false, b4 = false, b5 = false, b6=false, clean = true;
+        int i1 = 0, i2 = 0, i3 = 0, i4 = 0, i5 = 0;
         public string Text {  get; set; }
         public string s { get; set; }
         public Page3(string message)
@@ -35,9 +48,31 @@ namespace RandomApp.Pages
             this.DataContext=this;
             s= message;
             GetData();
+            timer1.Interval = TimeSpan.FromMilliseconds(200);
+            timer1.Tick += TextRun;
+            timer2.Interval = TimeSpan.FromSeconds(1);
+            timer2.Tick += TextStart;
             ShowList();
             CombApp.ItemsSource = ListComboBox();
+            if (b6 = true)
+            {
+                txt7.Text = "Danh sách giải thưởng";
+            }
         }
+        void TextStart(object o, EventArgs e)
+        {
+            count--;
+            if (count == 0)
+            {
+                Btn1.Content = "Bắt đầu";
+                count = 15;
+            }
+            else
+            {
+                Btn1.Content = count.ToString();
+            }
+        }
+
         private string[] ListComboBox()
         {
             string[] strArray =
@@ -51,19 +86,29 @@ namespace RandomApp.Pages
             return strArray;
         }
 
+        public void TextRun(object o, EventArgs e)
+        {
+            var personnelArray = Personnel.ToArray();
+            int i = Personnel.Count;
+            int j = random.Next(0, i);
+            txt3.Text = personnelArray[j].Code.ToString();
+            txt4.Text = personnelArray[j].Name.ToString();
+            txt5.Text = "-";
+            txt6.Text = personnelArray[j].Workshop.ToString();
+        }
         public void ShowList()
         {
             Leftbar leftbar = new Leftbar();
-            leftbar.ListPersonnel.ItemsSource = Personnel;
+            leftbar.datagrid1.ItemsSource = Personnel;
             if (Personnel.Count > 0) { 
                 ListPersonnel1.Children.Add(leftbar);
                 switch (s)
                 {
                     case "list1":
-                        HeadeBar.Text = "Danh sách DL đoàn 1";
+                        txt7.Text = "Danh sách DL đoàn 1";
                         break;
                     case "list2":
-                        HeadeBar.Text = "Danh sách DL đoàn 2";
+                        txt7.Text = "Danh sách DL đoàn 2";
                         break;
                 }
             }
@@ -72,7 +117,7 @@ namespace RandomApp.Pages
         {
             ExcelPackage.LicenseContext = LicenseContext.Commercial;
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var fileInfo = new FileInfo(@"D:\WPF\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
+            var fileInfo = new FileInfo(@"D:\setup\PortableGit\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
 
             if (!fileInfo.Exists)
             {
@@ -121,7 +166,432 @@ namespace RandomApp.Pages
 
         private void CombApp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txt2.Text=CombApp.SelectedValue.ToString();
+            txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
+        }
+
+        private async void Btn1_Click(object sender, RoutedEventArgs e)
+        {
+            string str = CombApp.Text;
+            if(str != "")
+            {
+                switch (str)
+                {
+                    case "Giải đặc biệt":
+                        if (i1 >= 1)
+                        {
+                            MessageBox.Show("Số lượng giải đã đủ !");
+                        }
+                        else
+                        {
+                            txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
+                            Btn1.IsEnabled = false;
+                            Btn2.IsEnabled = false;
+                            CombApp.IsEnabled = false;
+                            Btn1.Content = "15";
+                            count = 15;
+                            timer1.Start();
+                            timer2.Start();
+                            await Task.Delay(15000);
+                            timer1.Stop();
+                            timer2.Stop();
+                            txt1.Text = "Xin chúc mừng nhân viên có mã số:";
+                            Btn1.IsEnabled = true;
+                            Btn2.IsEnabled = true;
+                            CombApp.IsEnabled = true;
+                            Btn1.Content = "Bắt đầu";
+                        }
+                        break;
+                    case "Giải nhất":
+                        if (i2 >= 2)
+                        {
+                            MessageBox.Show("Số lượng giải đã đủ !");
+                        }
+                        else
+                        {
+                            txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
+                            Btn1.IsEnabled = false;
+                            Btn2.IsEnabled = false;
+                            CombApp.IsEnabled = false;
+                            Btn1.Content = "15";
+                            count = 15;
+                            timer1.Start();
+                            timer2.Start();
+                            await Task.Delay(15000);
+                            timer1.Stop();
+                            timer2.Stop();
+                            txt1.Text = "Xin chúc mừng nhân viên có mã số:";
+                            Btn1.IsEnabled = true;
+                            Btn2.IsEnabled = true;
+                            CombApp.IsEnabled = true;
+                            Btn1.Content = "Bắt đầu";
+                        }
+                        break;
+                    case "Giải nhì":
+                        if (i3 >= 3)
+                        {
+                            MessageBox.Show("Số lượng giải đã đủ !");
+                        }
+                        else
+                        {
+                            txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
+                            Btn1.IsEnabled = false;
+                            Btn2.IsEnabled = false;
+                            CombApp.IsEnabled = false;
+                            Btn1.Content = "15";
+                            count = 15;
+                            timer1.Start();
+                            timer2.Start();
+                            await Task.Delay(15000);
+                            timer1.Stop();
+                            timer2.Stop();
+                            txt1.Text = "Xin chúc mừng nhân viên có mã số:";
+                            Btn1.IsEnabled = true;
+                            Btn2.IsEnabled = true;
+                            CombApp.IsEnabled = true;
+                            Btn1.Content = "Bắt đầu";
+                        }
+                        break;
+                    case "Giải ba":
+                        if (i4 >= 4)
+                        {
+                            MessageBox.Show("Số lượng giải đã đủ !");
+                        }
+                        else
+                        {
+                            txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
+                            Btn1.IsEnabled = false;
+                            Btn2.IsEnabled = false;
+                            CombApp.IsEnabled = false;
+                            Btn1.Content = "15";
+                            count = 15;
+                            timer1.Start();
+                            timer2.Start();
+                            await Task.Delay(15000);
+                            timer1.Stop();
+                            timer2.Stop();
+                            txt1.Text = "Xin chúc mừng nhân viên có mã số:";
+                            Btn1.IsEnabled = true;
+                            Btn2.IsEnabled = true;
+                            CombApp.IsEnabled = true;
+                            Btn1.Content = "Bắt đầu";
+                        }
+                        break;
+                    case "Giải khuyến khích":
+                        if (i5 >= 5)
+                        {
+                            MessageBox.Show("Số lượng giải đã đủ !");
+                        }
+                        else
+                        {
+                            txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
+                            Btn1.IsEnabled = false;
+                            Btn2.IsEnabled = false;
+                            CombApp.IsEnabled = false;
+                            Btn1.Content = "15";
+                            count = 15;
+                            timer1.Start();
+                            timer2.Start();
+                            await Task.Delay(15000);
+                            timer1.Stop();
+                            timer2.Stop();
+                            txt1.Text = "Xin chúc mừng nhân viên có mã số:";
+                            Btn1.IsEnabled = true;
+                            Btn2.IsEnabled = true;
+                            CombApp.IsEnabled = true;
+                            Btn1.Content = "Bắt đầu";
+                        }
+                        break;
+                }
+                
+                
+                
+            }
+        }
+
+        private void Btn2_Click(object sender, RoutedEventArgs e)
+        {
+            b6=true;
+            string str = CombApp.Text;
+            string c = txt3.Text;
+            string n = txt4.Text;
+            string w = txt6.Text;
+            BonusList bonusList = new BonusList();
+            if(str !="")
+            {
+                if (clean == true)
+                {
+                    ListPersonnel1.Children.Clear();
+                    clean = false;
+                    switch (str) {
+                        case "Giải đặc biệt":
+                            i1++;
+                            if (i1 > 1)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b1 == false)
+                                {
+                                    bonusList.Text1 = str+" ( "+i1.ToString()+"/1 )";
+                                    prize1.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize1;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b1 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i1.ToString() + "/1 )";
+                                    prize1.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource=prize1;
+                                }
+                            }
+                            break;
+                        case "Giải nhất":
+                            i2++;
+                            if (i2 > 2)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b2 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i2.ToString() + "/2 )";
+                                    prize2.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize2;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b2 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i2.ToString() + "/2 )";
+                                    prize2.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize2;
+                                }
+                            }
+                            break;
+                        case "Giải nhì":
+                            i3++;
+                            if (i3 > 3)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b3 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i3.ToString() + "/3 )";
+                                    prize3.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize3;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b3 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i3.ToString() + "/3 )";
+                                    prize3.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize3;
+                                }
+                            }
+                            break;
+                        case "Giải ba":
+                            i4++;
+                            if (i4 > 4)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b4 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i4.ToString() + "/4 )";
+                                    prize4.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize4;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b4 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i4.ToString() + "/4 )";
+                                    prize4.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize4;
+                                }
+                            }
+                            break;
+                        case "Giải khuyến khích":
+                            i5++;
+                            if (i5 > 5)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b5 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i5.ToString() + "/5 )";
+                                    prize5.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize5;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b5 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i5.ToString() + "/5 )";
+                                    prize5.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize5;
+                                }
+                            }
+                            break;
+                        }
+                }
+                else
+                {
+                    switch (str)
+                    {
+                        case "Giải đặc biệt":
+                            i1++;
+                            if (i1 > 1)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b1 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i1.ToString() + "/1 )";
+                                    prize1.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize1;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b1 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i1.ToString() + "/1 )";
+                                    prize2.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize1;
+                                }
+                            }
+                            break;
+                        case "Giải nhất":
+                            i2++;
+                            if (i2 > 2)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b2 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i2.ToString() + "/2 )";
+                                    prize2.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize2;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b2 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i2.ToString() + "/2 )";
+                                    prize2.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize2;
+                                }
+                            }
+                            break;
+                        case "Giải nhì":
+                            i3++;
+                            if (i3 > 3)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b3 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i3.ToString() + "/3 )";
+                                    prize3.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize3;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b3 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i3.ToString() + "/3 )";
+                                    prize3.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize3;
+                                }
+                            }
+                            break;
+                        case "Giải ba":
+                            i4++;
+                            if (i4 > 4)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b4 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i4.ToString() + "/4 )";
+                                    prize4.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize4;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b4 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i4.ToString() + "/4 )";
+                                    prize4.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize4;
+                                }
+                            }
+                            break;
+                        case "Giải khuyến khích":
+                            i5++;
+                            if (i5 > 5)
+                            {
+                                MessageBox.Show("Số lượng giải đã đủ !");
+                            }
+                            else
+                            {
+                                if (b5 == false)
+                                {
+                                    bonusList.Text1 = str + " ( " + i5.ToString() + "/5 )";
+                                    prize5.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize5;
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    start = false;
+                                    b5 = true;
+                                }
+                                else
+                                {
+                                    bonusList.Text1 = str + " ( " + i5.ToString() + "/5 )";
+                                    prize5.Add(new User() { Code = c, Name = n, Workshop = w });
+                                    bonusList.datagrid1.ItemsSource = prize5;
+                                }
+                            }
+                            break;
+                    }
+                }
+            }
         }
     }
 }

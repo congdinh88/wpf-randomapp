@@ -15,11 +15,9 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             TextWrapping="Wrap">
-            Chào mừng toàn thế CBCNV đến với vòng quay may mắn.
             BGĐ NMCĐ cám ơn toàn thể CNCNV đã gắn bó với NM đóng 
             góp sức mình để NM càng lớn mạnh. Kính chúc toàn thể CBCNV có chuyến 
-            du lịch vui vẻ, hạnh phúc. Chúc toàn thể CBCNV 
-            may mắn dành được giải thưởng!
+            du lịch vui vẻ, hạnh phúc và may mắn dành được giải thưởng!
 
         </TextBlock>
         <Button
