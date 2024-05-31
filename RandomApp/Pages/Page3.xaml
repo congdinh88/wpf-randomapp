@@ -19,7 +19,7 @@ FontFamily="{DynamicResource MaterialDesignFont}"
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
@@ -35,8 +35,7 @@ FontFamily="{DynamicResource MaterialDesignFont}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     TextDecorations="Underline"
-                    FontSize="14"
-                    Text="{Binding Text}"/>
+                    FontSize="14"/>
             </StackPanel>
             <ScrollViewer 
                 VerticalScrollBarVisibility="Auto"
@@ -114,6 +113,7 @@ FontFamily="{DynamicResource MaterialDesignFont}"
                 <Button 
                     x:Name="Btn1" 
                     Content="Bắt đầu"
+                    IsEnabled="False"
                     Margin="10"
                     Click="Btn1_Click"
                     Style="{StaticResource ButtonApp}"/>
@@ -121,6 +121,7 @@ FontFamily="{DynamicResource MaterialDesignFont}"
                     x:Name="Btn2" 
                     Content="Cập nhập"
                     Margin="10"
+                    IsEnabled="False"
                     Click="Btn2_Click"
                     Style="{StaticResource ButtonApp}"/>
             </StackPanel>
