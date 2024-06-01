@@ -4,9 +4,12 @@ using RandomApp.UserControlApp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.IO.Packaging;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -36,6 +39,7 @@ namespace RandomApp.Pages
         public ObservableCollection<User> prize3 = new ObservableCollection<User>();
         public ObservableCollection<User> prize4 = new ObservableCollection<User>();
         public ObservableCollection<User> prize5 = new ObservableCollection<User>();
+
         Random random = new Random();
         int count = 15;
         bool start = false, b1 = false, b2 = false, b3 = false, b4 = false, b5 = false, b6=false, clean = true;
@@ -44,7 +48,7 @@ namespace RandomApp.Pages
         public Page3(string message)
         {
             InitializeComponent();
-            this.DataContext=this;
+            DataContext=this;
             s = message;
             GetData();
             timer1.Interval = TimeSpan.FromMilliseconds(200);
@@ -53,7 +57,11 @@ namespace RandomApp.Pages
             timer2.Tick += TextStart;
             ShowList();
             CombApp.ItemsSource = ListComboBox();
+            CombApp.SelectedIndex = 0;
+
         }
+
+
         void TextStart(object o, EventArgs e)
         {
             count--;
@@ -110,9 +118,9 @@ namespace RandomApp.Pages
         }
         public void GetData()
         {
-            ExcelPackage.LicenseContext = LicenseContext.Commercial;
-            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var fileInfo = new FileInfo(@"D:\WPF\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
+            //ExcelPackage.LicenseContext = LicenseContext.Commercial;
+            //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+            var fileInfo = new FileInfo(@"D:\setup\PortableGit\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
 
             if (!fileInfo.Exists)
             {
@@ -163,61 +171,6 @@ namespace RandomApp.Pages
         {
             txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
             Btn1.IsEnabled = true;
-            //string str = CombApp.Text;
-            //if (str != "")
-            //{
-            //    switch (str)
-            //    {
-            //        case "Giải đặc biệt":
-            //            if(i2<=2|| i3 <= 3 || i4 <= 4 || i5 <= 5)
-            //            {
-            //                MessageBox.Show("Số lượng giải chưa đủ");
-            //            }
-            //            else
-            //            {
-            //                txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
-            //                Btn1.IsEnabled = true;
-            //            }
-            //            break;
-            //        case "Giải nhất":
-            //            if (i3 <= 3 || i4 <= 4 || i5 <= 5)
-            //            {
-            //                MessageBox.Show("Số lượng giải chưa đủ");
-            //            }
-            //            else
-            //            {
-            //                txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
-            //                Btn1.IsEnabled = true;
-            //            }
-            //            break;
-            //        case "Giải nhì":
-            //            if (i4 <= 4 || i5 <= 5)
-            //            {
-            //                MessageBox.Show("Số lượng giải chưa đủ");
-            //            }
-            //            else
-            //            {
-            //                txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
-            //                Btn1.IsEnabled = true;
-            //            }
-            //            break;
-            //        case "Giải ba":
-            //            if (i5 <= 5)
-            //            {
-            //                MessageBox.Show("Số lượng giải chưa đủ");
-            //            }
-            //            else
-            //            {
-            //                txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
-            //                Btn1.IsEnabled = true;
-            //            }
-            //            break;
-            //        case "Giải khuyến khích":
-            //            txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
-            //            Btn1.IsEnabled = true;
-            //            break;
-            //    }
-            //}
         }
 
         public async void UpdateText()
@@ -280,6 +233,7 @@ namespace RandomApp.Pages
             BonusList bonusList = new BonusList();
             if(str !="" && c!=""&& n!="" && w!="")
             {
+                bonusList.expander1.Header=str;
                 if (clean == true)
                 {
                     ListPersonnel1.Children.Clear();
@@ -293,7 +247,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.Text1 = $"{str} ( {i1.ToString()} /1 )";
                                 prize1.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize1;
                                 if (b1 == false)
@@ -312,7 +265,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.expander1.Header = $"{str} ( {i2} /2 )";
                                 prize2.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize2;
                                 if (b2 == false)
@@ -331,7 +283,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.Text1 = $"{str} ( {i3.ToString()} /3 )";
                                 prize3.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize3;
                                 if (b3 == false)
@@ -350,7 +301,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.Text1 = $"{str} ( {i4.ToString()} /4 )";
                                 prize4.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize4;
                                 if (b4 == false)
@@ -369,7 +319,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.Text1 = $"{str} ( {i4.ToString()} /4 )";
                                 prize5.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize5;
                                 if (b5 == false)
@@ -394,7 +343,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.Text1 = $"{str} ( {i1.ToString()} /1 )";
                                 prize1.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize1;
                                 if (b1 == false)
@@ -407,13 +355,13 @@ namespace RandomApp.Pages
                             break;
                         case "Giải nhất":
                             i2++;
+                            string str1 = $"{str} ( {i2} /2 )";
                             if (i2 > 2)
                             {
                                 ShowMessenger();
                             }
                             else
                             {
-                                bonusList.expander1.Header = $"{str} ( {i2} /2 )";
                                 prize2.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize2;
                                 if (b2 == false)
@@ -432,7 +380,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.Text1 = $"{str} ( {i3.ToString()} /3 )";
                                 prize3.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize3;
                                 if (b3 == false)
@@ -451,7 +398,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.Text1 = $"{str} ( {i4.ToString()} /4 )";
                                 prize4.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize4;
                                 if (b4 == false)
@@ -470,7 +416,6 @@ namespace RandomApp.Pages
                             }
                             else
                             {
-                                bonusList.Text1 = $"{str} ( {i4} /4 )";
                                 prize5.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize5;
                                 if (b5 == false)

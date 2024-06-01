@@ -24,19 +24,40 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
+        
+        <StackPanel 
+            Grid.Row="0" 
+            HorizontalAlignment="Right"
+            Orientation="Horizontal" >
+            <MediaElement 
+                x:Name="BackgroundMusic"
+                Volume="1"
+                Source="pack://siteoforigin:,,,/Static/background.mp3"
+                LoadedBehavior="Manual" 
+                UnloadedBehavior="Stop"
+                Stretch="None"/>
+            <ToggleButton
+                x:Name="togbtn"
+                IsChecked="False"
+                Checked="togbtn_Checked"
+                Unchecked="togbtn_Unchecked"
+                Style="{StaticResource togBtn}">
+                <TextBlock
+                    x:Name="txt1"
+                    FontFamily="Segoe MDL2 Assets"
+                    Text="&#xE995;"/>
+            </ToggleButton>
             <ComboBox 
                 x:Name="comboBox"
                 SelectionChanged="comboBox_SelectionChanged"
                 Style="{StaticResource ComboBoxApp}"
-                HorizontalAlignment="Right">
+                >
             </ComboBox>
         </StackPanel>
-            <Frame 
-                x:Name="MainContent"
-                Grid.Row="1"
-                NavigationUIVisibility="Hidden"
-                >
+        <Frame 
+            x:Name="MainContent"
+            Grid.Row="1"
+            NavigationUIVisibility="Hidden">
             </Frame>
     </Grid>
 </Window>

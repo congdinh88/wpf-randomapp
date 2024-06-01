@@ -6,16 +6,22 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Static\icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Static\background.mp3" />
     <None Remove="Static\CoTo.jpg" />
     <None Remove="Static\DaoThanhLan.jpg" />
     <None Remove="Static\PersonnelList.xlsx" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Static\icon.ico" />
     <Content Include="Static\PersonnelList.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Static\background.mp3">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

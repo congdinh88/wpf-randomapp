@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,11 +22,11 @@ namespace RandomApp.UserControlApp
     /// </summary>
     public partial class BonusList : UserControl
     {
-        public string Text1 {  get; set; }
+        public string [] Str2 {  get; set; }
         public BonusList()
         {
             InitializeComponent();
-            this.DataContext = this;
+            DataContext = this;
         }
     }
 }

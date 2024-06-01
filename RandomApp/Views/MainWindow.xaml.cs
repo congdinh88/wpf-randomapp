@@ -1,5 +1,6 @@
 ﻿using RandomApp.Pages;
 using System.Collections.ObjectModel;
+using System.Numerics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,11 +25,17 @@ namespace RandomApp
         public MainWindow()
         {
             InitializeComponent();
+            
             Instance = this;
             MainContent.Navigate(new Page1());
             comboBox.ItemsSource = PageShow();
             comboBox.Text=PageShow().FirstOrDefault()?.ToString();
+           
+            BackgroundMusic.Play();
         }
+
+
+
         public void Page2ToPage3(string message)
         {
             MainContent.Navigate(new Page3(message));
@@ -75,6 +82,20 @@ namespace RandomApp
                         break;
                 }
             }
+        }
+
+
+        private void togbtn_Checked(object sender, RoutedEventArgs e)
+        {
+            txt1.Text = "\xE74F";
+            BackgroundMusic.Pause();
+        }
+
+        private void togbtn_Unchecked(object sender, RoutedEventArgs e)
+        {
+            txt1.Text = "\xE995";
+            BackgroundMusic.Play();
+            
         }
     }
 }

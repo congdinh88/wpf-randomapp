@@ -7,13 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
+        <TextBlock Text="{Binding Str2}"/>
         <Expander 
             x:Name="expander1"
-            Background="Transparent"
-            >
-            <Expander.Header>
+            Background="Transparent">
+            <!--<Expander.Header>
                 <TextBlock Text="{Binding Text1}"/>
-            </Expander.Header>
+            </Expander.Header>-->
             <DataGrid 
                 IsReadOnly="True"
                 AutoGenerateColumns="False"
