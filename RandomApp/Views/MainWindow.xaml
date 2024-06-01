@@ -35,7 +35,7 @@
                 Source="pack://siteoforigin:,,,/Static/background.mp3"
                 LoadedBehavior="Manual" 
                 UnloadedBehavior="Stop"
-                Stretch="None"/>
+                MediaEnded="BackgroundMusic_MediaEnded"/>
             <ToggleButton
                 x:Name="togbtn"
                 IsChecked="False"

@@ -22,6 +22,7 @@ namespace RandomApp
         ObservableCollection<string> item {get;set;}
         public static MainWindow Instance { get; private set; }
         public string s { get; set;}
+        public bool b = true;
         public MainWindow()
         {
             InitializeComponent();
@@ -66,6 +67,7 @@ namespace RandomApp
 
         private void comboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            
             string str = comboBox.SelectedValue.ToString();
             if (str != null)
             {
@@ -73,12 +75,29 @@ namespace RandomApp
                 {
                     case "Page1":
                         MainContent.Navigate(new Page1());
+                        b = false;
                         break;
                     case "Page2":
                         MainContent.Navigate(new Page2());
+                        b = true;
                         break;
                     case "Page3":
-                        MainContent.Navigate(new Page3(s));
+                        if (s != null)
+                        {
+                            MainContent.Navigate(new Page3(s));
+                        }
+                        else
+                        {
+                            if (b == false)
+                            {
+                                b = true;
+                                MessageBox.Show("Mời chọn trang tiếp theo sau đó chọn đoàn du lịch để tiếp tục!");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Mời chọn đoàn du lịch để tiếp tục!");
+                            }
+                        }
                         break;
                 }
             }
@@ -96,6 +115,12 @@ namespace RandomApp
             txt1.Text = "\xE995";
             BackgroundMusic.Play();
             
+        }
+
+        private void BackgroundMusic_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            BackgroundMusic.Position = TimeSpan.Zero;
+            BackgroundMusic.Play();
         }
     }
 }

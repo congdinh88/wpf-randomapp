@@ -42,8 +42,7 @@ namespace RandomApp.Pages
 
         Random random = new Random();
         int count = 15;
-        bool start = false, b1 = false, b2 = false, b3 = false, b4 = false, b5 = false, b6=false, clean = true;
-        int i1=0, i2=0, i3 = 0, i4 = 0, i5 = 0;
+        bool b1 = false, b2 = false, b3 = false, b4 = false, b5 = false, clean = true;
         public string s { get; set; }
         public Page3(string message)
         {
@@ -120,7 +119,7 @@ namespace RandomApp.Pages
         {
             //ExcelPackage.LicenseContext = LicenseContext.Commercial;
             //ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-            var fileInfo = new FileInfo(@"D:\setup\PortableGit\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
+            var fileInfo = new FileInfo(@"D:\WPF\wpf-randomapp\RandomApp\Static\PersonnelList.xlsx");
 
             if (!fileInfo.Exists)
             {
@@ -204,19 +203,19 @@ namespace RandomApp.Pages
                 switch (str)
                 {
                     case "Giải đặc biệt":
-                        (i1 >= 1 ? (Action)ShowMessenger : UpdateText)();
+                        (prize1.Count >= 1 ? (Action)ShowMessenger : UpdateText)();
                         break;
                     case "Giải nhất":
-                        (i2 >= 2 ? (Action)ShowMessenger : UpdateText)();
+                        (prize2.Count >= 2 ? (Action)ShowMessenger : UpdateText)();
                         break;
                     case "Giải nhì":
-                        (i3 >= 3 ? (Action)ShowMessenger : UpdateText)();
+                        (prize3.Count >= 3 ? (Action)ShowMessenger : UpdateText)();
                         break;
                     case "Giải ba":
-                        (i4 >= 4 ? (Action)ShowMessenger : UpdateText)();
+                        (prize4.Count >= 4 ? (Action)ShowMessenger : UpdateText)();
                         break;
                     case "Giải khuyến khích":
-                        (i5 >= 5 ? (Action)ShowMessenger : UpdateText)();
+                        (prize5.Count >= 5 ? (Action)ShowMessenger : UpdateText)();
                         break;
                 }
             }
@@ -233,15 +232,14 @@ namespace RandomApp.Pages
             BonusList bonusList = new BonusList();
             if(str !="" && c!=""&& n!="" && w!="")
             {
-                bonusList.expander1.Header=str;
+                bonusList.expander1.Header = str;
                 if (clean == true)
                 {
                     ListPersonnel1.Children.Clear();
                     clean = false;
                     switch (str) {
                         case "Giải đặc biệt":
-                            i1++;
-                            if (i1 > 1)
+                            if (prize1.Count > 1)
                             {
                                 ShowMessenger();
                             }
@@ -258,8 +256,7 @@ namespace RandomApp.Pages
                             }
                             break;
                         case "Giải nhất":
-                            i2++;
-                            if (i2 > 2)
+                            if (prize2.Count >=2)
                             {
                                 ShowMessenger();
                             }
@@ -276,8 +273,7 @@ namespace RandomApp.Pages
                             }
                             break;
                         case "Giải nhì":
-                            i3++;
-                            if (i3 > 3)
+                            if (prize3.Count > 3)
                             {
                                 ShowMessenger();
                             }
@@ -294,8 +290,7 @@ namespace RandomApp.Pages
                             }
                             break;
                         case "Giải ba":
-                            i4++;
-                            if (i4 > 4)
+                            if (prize4.Count > 4)
                             {
                                 ShowMessenger();
                             }
@@ -312,8 +307,7 @@ namespace RandomApp.Pages
                             }
                             break;
                         case "Giải khuyến khích":
-                            i5++;
-                            if (i5 > 5)
+                            if (prize5.Count > 5)
                             {
                                 ShowMessenger();
                             }
@@ -336,8 +330,7 @@ namespace RandomApp.Pages
                     switch (str)
                     {
                         case "Giải đặc biệt":
-                            i1++;
-                            if (i1 > 1)
+                            if (prize1.Count > 1)
                             {
                                 ShowMessenger();
                             }
@@ -345,18 +338,11 @@ namespace RandomApp.Pages
                             {
                                 prize1.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize1;
-                                if (b1 == false)
-                                {
-                                    bonusList.expander1.IsExpanded = true;
-                                    ListPersonnel1.Children.Insert(0, bonusList);
-                                    b1 = true;
-                                }
                             }
                             break;
                         case "Giải nhất":
-                            i2++;
-                            string str1 = $"{str} ( {i2} /2 )";
-                            if (i2 > 2)
+                            
+                            if (prize2.Count()>=2)
                             {
                                 ShowMessenger();
                             }
@@ -364,17 +350,11 @@ namespace RandomApp.Pages
                             {
                                 prize2.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize2;
-                                if (b2 == false)
-                                {
-                                    bonusList.expander1.IsExpanded = true;
-                                    ListPersonnel1.Children.Insert(0, bonusList);
-                                    b2 = true;
-                                }
                             }
+
                             break;
                         case "Giải nhì":
-                            i3++;
-                            if (i3 > 3)
+                            if (prize3.Count > 3)
                             {
                                 ShowMessenger();
                             }
@@ -382,17 +362,10 @@ namespace RandomApp.Pages
                             {
                                 prize3.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize3;
-                                if (b3 == false)
-                                {
-                                    bonusList.expander1.IsExpanded = true;
-                                    ListPersonnel1.Children.Insert(0, bonusList);
-                                    b3 = true;
-                                }
                             }
                             break;
                         case "Giải ba":
-                            i4++;
-                            if (i4 > 4)
+                            if (prize4.Count > 4)
                             {
                                 ShowMessenger();
                             }
@@ -400,17 +373,10 @@ namespace RandomApp.Pages
                             {
                                 prize4.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize4;
-                                if (b4 == false)
-                                {
-                                    bonusList.expander1.IsExpanded = true;
-                                    ListPersonnel1.Children.Insert(0, bonusList);
-                                    b4 = true;
-                                }
                             }
                             break;
                         case "Giải khuyến khích":
-                            i5++;
-                            if (i5 > 5)
+                            if (prize5.Count > 5)
                             {
                                 ShowMessenger();
                             }
@@ -418,12 +384,6 @@ namespace RandomApp.Pages
                             {
                                 prize5.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize5;
-                                if (b5 == false)
-                                {
-                                    bonusList.expander1.IsExpanded = true;
-                                    ListPersonnel1.Children.Insert(0, bonusList);
-                                    b5 = true;
-                                }
                             }
                             break;
                     }

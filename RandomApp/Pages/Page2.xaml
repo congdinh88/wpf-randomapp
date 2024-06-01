@@ -29,7 +29,7 @@
                     <ListViewItem Content="-Giải nhất: 02 giải"/>
                     <ListViewItem Content="-Giải nhì: 03 giải"/>
                     <ListViewItem Content="-Giải ba: 04 giải"/>
-                    <ListViewItem Content="-Giải khuyến khích: 5 giải"/>
+                    <ListViewItem Content="-Giải khuyến khích: 05 giải"/>
                 </ListView> <LineBreak/>
                 Cách thức quay:<LineBreak/>
                 <ListView 
