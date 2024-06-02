@@ -92,10 +92,12 @@ namespace RandomApp
                             {
                                 b = true;
                                 MessageBox.Show("Mời chọn trang tiếp theo sau đó chọn đoàn du lịch để tiếp tục!");
+                                comboBox.SelectedValue = PageShow()[0];
                             }
                             else
                             {
                                 MessageBox.Show("Mời chọn đoàn du lịch để tiếp tục!");
+                                comboBox.SelectedValue = PageShow()[1];
                             }
                         }
                         break;

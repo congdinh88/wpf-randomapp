@@ -56,7 +56,6 @@ namespace RandomApp.Pages
             timer2.Tick += TextStart;
             ShowList();
             CombApp.ItemsSource = ListComboBox();
-            CombApp.SelectedIndex = 0;
 
         }
 
@@ -170,6 +169,48 @@ namespace RandomApp.Pages
         {
             txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
             Btn1.IsEnabled = true;
+
+            if (prize5.Count < 5)
+            {
+                CombApp.SelectedValue = ListComboBox()[4];
+            }
+            else if (prize4.Count < 4)
+            {
+                CombApp.SelectedValue = ListComboBox()[3];
+            }
+            else if (prize3.Count < 3)
+            {
+                CombApp.SelectedValue = ListComboBox()[2];
+            }
+            else if (prize2.Count < 2)
+            {
+                CombApp.SelectedValue = ListComboBox()[1];
+            }
+            else if (prize1.Count < 1)
+            {
+                CombApp.SelectedValue = ListComboBox()[0];
+            }
+                //switch (str)
+                //{
+                //    case "Giải đặc biệt":
+
+                //        break;
+                //    case "Giải nhất":
+
+                //        break;
+                //    case "Giải nhì":
+
+                //        break;
+                //    case "Giải ba":
+
+                //        break;
+                //    case "Giải khuyến khích":
+                //        if (prize5.Count < 5)
+                //        {
+
+                //        }
+                //        break;
+                //}
         }
 
         public async void UpdateText()
@@ -338,6 +379,12 @@ namespace RandomApp.Pages
                             {
                                 prize1.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize1;
+                                if (b1 == false)
+                                {
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    b1 = true;
+                                }
                             }
                             break;
                         case "Giải nhất":
@@ -350,6 +397,12 @@ namespace RandomApp.Pages
                             {
                                 prize2.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize2;
+                                if (b2 == false)
+                                {
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    b2 = true;
+                                }
                             }
 
                             break;
@@ -362,6 +415,12 @@ namespace RandomApp.Pages
                             {
                                 prize3.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize3;
+                                if (b3 == false)
+                                {
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    b3 = true;
+                                }
                             }
                             break;
                         case "Giải ba":
@@ -373,6 +432,12 @@ namespace RandomApp.Pages
                             {
                                 prize4.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize4;
+                                if (b4 == false)
+                                {
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    b4 = true;
+                                }
                             }
                             break;
                         case "Giải khuyến khích":
@@ -384,6 +449,12 @@ namespace RandomApp.Pages
                             {
                                 prize5.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.datagrid1.ItemsSource = prize5;
+                                if (b5 == false)
+                                {
+                                    bonusList.expander1.IsExpanded = true;
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    b5 = true;
+                                }
                             }
                             break;
                     }

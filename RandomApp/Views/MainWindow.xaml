@@ -14,7 +14,7 @@
      TextOptions.TextRenderingMode="Auto"
      FontFamily="{DynamicResource MaterialDesignFont}"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="Quay thưởng" Height="600" Width="1000">
     <Window.Background>
         <ImageBrush ImageSource="pack://application:,,,/Static/CoTo.jpg" Stretch="UniformToFill"/>
     </Window.Background>
