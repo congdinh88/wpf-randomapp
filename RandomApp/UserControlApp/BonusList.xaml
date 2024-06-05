@@ -10,14 +10,13 @@
         <TextBlock Text="{Binding Str2}"/>
         <Expander 
             x:Name="expander1"
+            IsExpanded="True"
             Background="Transparent">
-            <!--<Expander.Header>
-                <TextBlock Text="{Binding Text1}"/>
-            </Expander.Header>-->
             <DataGrid 
                 IsReadOnly="True"
                 AutoGenerateColumns="False"
                 x:Name="datagrid1"
+                PreviewKeyDown="DataGrid_KeyDown"
                 Background="Transparent">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="auto" Header="Mã NV" Binding="{Binding Code}"/>

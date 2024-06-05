@@ -56,9 +56,17 @@ namespace RandomApp.Pages
             timer2.Tick += TextStart;
             ShowList();
             CombApp.ItemsSource = ListComboBox();
+            this.PreviewKeyDown += Page3_PreviewKeyDown;
 
         }
-
+        private void Page3_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            foreach (var item in ListPersonnel1.Children)
+            {
+                if (item is BonusList userControl)
+                    userControl.DataGrid_KeyDown(sender, e);
+            }
+        }
 
         void TextStart(object o, EventArgs e)
         {
@@ -255,7 +263,6 @@ namespace RandomApp.Pages
             string n = txt4.Text;
             string w = txt6.Text;
             BonusList bonusList = new BonusList();
-            bonusList.expander1.IsExpanded = true;
             if (str !="" && c!=""&& n!="" && w!="")
             {
                 
@@ -269,7 +276,7 @@ namespace RandomApp.Pages
                             {
                                 prize5.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.expander1.Header = $"{str} ({prize5.Count}/5)";
-                                bonusList.datagrid1.ItemsSource = prize5;
+                                bonusList.BonusList1 = prize5;
                                 ListPersonnel1.Children.Insert(0, bonusList);
                             }
                             break;
@@ -282,7 +289,8 @@ namespace RandomApp.Pages
                         case "Giải đặc biệt":
                             prize1.Add(new User() { Code = c, Name = n, Workshop = w });
                             bonusList.expander1.Header = $"{str} ({prize1.Count}/1)";
-                            bonusList.datagrid1.ItemsSource = prize1;
+                            bonusList.BonusList1 = prize1;
+                            
                             ListPersonnel1.Children.Insert(0, bonusList);
                             break;
                         case "Giải nhất":
@@ -295,7 +303,7 @@ namespace RandomApp.Pages
                             {
                                 prize2.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.expander1.Header = $"{str} ({prize2.Count}/2)";
-                                bonusList.datagrid1.ItemsSource = prize2;
+                                bonusList.BonusList1 = prize2;
                                 ListPersonnel1.Children.Insert(0, bonusList);
                                 if (b2 == true)
                                 {
@@ -314,7 +322,7 @@ namespace RandomApp.Pages
                             {
                                 prize3.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.expander1.Header = $"{str} ({prize3.Count}/3)";
-                                bonusList.datagrid1.ItemsSource = prize3;
+                                bonusList.BonusList1 = prize3;
                                 ListPersonnel1.Children.Insert(0, bonusList);
                                 if (b3 == true)
                                 {
@@ -332,7 +340,8 @@ namespace RandomApp.Pages
                             {
                                 prize4.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.expander1.Header = $"{str} ({prize4.Count}/4)";
-                                bonusList.datagrid1.ItemsSource = prize4;
+                                bonusList.BonusList1 = prize4;
+
                                 ListPersonnel1.Children.Insert(0, bonusList);
                                 if (b4 == true)
                                 {
@@ -350,13 +359,14 @@ namespace RandomApp.Pages
                             {
                                 prize5.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.expander1.Header = $"{str} ({prize5.Count}/5)";
-                                bonusList.datagrid1.ItemsSource = prize5;
+                                bonusList.BonusList1 = prize5;
                                 ListPersonnel1.Children.Insert(0, bonusList);
                                 ListPersonnel1.Children.RemoveAt(1);
                             }
                             break;
                     }
                 }
+                bonusList.datagrid1.ItemsSource = bonusList.BonusList1;
                 for (int i = 0; i < Personnel.Count; i++)
                 {
                     if (Personnel[i].Code == c)

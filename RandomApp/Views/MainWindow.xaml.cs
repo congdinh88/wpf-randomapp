@@ -1,4 +1,5 @@
 ﻿using RandomApp.Pages;
+using RandomApp.UserControlApp;
 using System.Collections.ObjectModel;
 using System.Numerics;
 using System.Text;
@@ -33,9 +34,8 @@ namespace RandomApp
             comboBox.Text=PageShow().FirstOrDefault()?.ToString();
            
             BackgroundMusic.Play();
+
         }
-
-
 
         public void Page2ToPage3(string message)
         {
