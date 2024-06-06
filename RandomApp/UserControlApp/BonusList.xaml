@@ -15,6 +15,7 @@
             <DataGrid 
                 IsReadOnly="True"
                 AutoGenerateColumns="False"
+                Focusable="True"
                 x:Name="datagrid1"
                 PreviewKeyDown="DataGrid_KeyDown"
                 Background="Transparent">

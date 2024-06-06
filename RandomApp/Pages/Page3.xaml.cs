@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.IO;
 using System.IO.Packaging;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,12 +60,65 @@ namespace RandomApp.Pages
             this.PreviewKeyDown += Page3_PreviewKeyDown;
 
         }
+
+        private void UpdateHeader()
+        {
+            foreach (BonusList item in ListPersonnel1.Children)
+            {
+                string? str = item.expander1.Header.ToString();
+                if (str.Length >= 6)
+                {
+                    string s = str.Substring(0, str.Length - 6);
+                    switch (s)
+                    {
+                        case "Giải đặc biệt":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/1)";
+                            break;
+                        case "Giải nhất":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/2)";
+                            break;
+                        case "Giải nhì":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/3)";
+                            break;
+                        case "Giải ba":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/4)";
+                            break;
+                        case "Giải khuyến khích":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/5)";
+                            break;
+                    }
+                }
+            }
+        }
         private void Page3_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            foreach (var item in ListPersonnel1.Children)
+            
+            foreach (BonusList item in ListPersonnel1.Children)
             {
-                if (item is BonusList userControl)
-                    userControl.DataGrid_KeyDown(sender, e);
+                item.DataGrid_KeyDown(sender, e);
+                string? str = item.expander1.Header.ToString();
+                if (str.Length >=6 )
+                {
+                    string s = str.Substring(0, str.Length - 6);
+                    switch (s)
+                    {
+                        case "Giải đặc biệt":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/1)";
+                            break;
+                        case "Giải nhất":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/2)";
+                            break;
+                        case "Giải nhì":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/3)";
+                            break;
+                        case "Giải ba":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/4)";
+                            break;
+                        case "Giải khuyến khích":
+                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/5)";
+                            break;
+                    }
+                }
             }
         }
 
@@ -263,6 +317,7 @@ namespace RandomApp.Pages
             string n = txt4.Text;
             string w = txt6.Text;
             BonusList bonusList = new BonusList();
+            
             if (str !="" && c!=""&& n!="" && w!="")
             {
                 
@@ -290,8 +345,11 @@ namespace RandomApp.Pages
                             prize1.Add(new User() { Code = c, Name = n, Workshop = w });
                             bonusList.expander1.Header = $"{str} ({prize1.Count}/1)";
                             bonusList.BonusList1 = prize1;
-                            
-                            ListPersonnel1.Children.Insert(0, bonusList);
+                            if (b1 == false)
+                            {
+                                ListPersonnel1.Children.Insert(0, bonusList);
+                                b1 = true;
+                            }
                             break;
                         case "Giải nhất":
                             
@@ -304,12 +362,11 @@ namespace RandomApp.Pages
                                 prize2.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.expander1.Header = $"{str} ({prize2.Count}/2)";
                                 bonusList.BonusList1 = prize2;
-                                ListPersonnel1.Children.Insert(0, bonusList);
-                                if (b2 == true)
+                                if (b2 == false)
                                 {
-                                    ListPersonnel1.Children.RemoveAt(1);
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    b2 = true;
                                 }
-                                b2 = true;
                             }
 
                             break;
@@ -323,12 +380,11 @@ namespace RandomApp.Pages
                                 prize3.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.expander1.Header = $"{str} ({prize3.Count}/3)";
                                 bonusList.BonusList1 = prize3;
-                                ListPersonnel1.Children.Insert(0, bonusList);
-                                if (b3 == true)
-                                {
-                                    ListPersonnel1.Children.RemoveAt(1);
+                                if (b3 == false)
+                                { 
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    b3 = true;
                                 }
-                                b3 = true;
                             }
                             break;
                         case "Giải ba":
@@ -341,13 +397,11 @@ namespace RandomApp.Pages
                                 prize4.Add(new User() { Code = c, Name = n, Workshop = w });
                                 bonusList.expander1.Header = $"{str} ({prize4.Count}/4)";
                                 bonusList.BonusList1 = prize4;
-
-                                ListPersonnel1.Children.Insert(0, bonusList);
-                                if (b4 == true)
+                                if (b4 == false)
                                 {
-                                    ListPersonnel1.Children.RemoveAt(1);
+                                    ListPersonnel1.Children.Insert(0, bonusList);
+                                    b4 = true;
                                 }
-                                b4 = true;
                             }
                             break;
                         case "Giải khuyến khích":
@@ -358,15 +412,13 @@ namespace RandomApp.Pages
                             else
                             {
                                 prize5.Add(new User() { Code = c, Name = n, Workshop = w });
-                                bonusList.expander1.Header = $"{str} ({prize5.Count}/5)";
                                 bonusList.BonusList1 = prize5;
-                                ListPersonnel1.Children.Insert(0, bonusList);
-                                ListPersonnel1.Children.RemoveAt(1);
                             }
                             break;
                     }
                 }
                 bonusList.datagrid1.ItemsSource = bonusList.BonusList1;
+
                 for (int i = 0; i < Personnel.Count; i++)
                 {
                     if (Personnel[i].Code == c)
@@ -379,6 +431,7 @@ namespace RandomApp.Pages
                 txt5.Text = "----";
                 txt4.Text = "";
                 txt6.Text = "";
+                UpdateHeader();
             }
         }
     }

@@ -24,7 +24,6 @@ namespace RandomApp.UserControlApp
     /// </summary>
     public partial class BonusList : UserControl
     {
-
         public ObservableCollection<User> BonusList1 { get; set; }
         public BonusList()
         {
