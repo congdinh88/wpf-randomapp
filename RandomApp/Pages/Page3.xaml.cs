@@ -51,7 +51,7 @@ namespace RandomApp.Pages
             DataContext=this;
             s = message;
             GetData();
-            timer1.Interval = TimeSpan.FromMilliseconds(200);
+            timer1.Interval = TimeSpan.FromMilliseconds(150);
             timer1.Tick += TextRun;
             timer2.Interval = TimeSpan.FromSeconds(1);
             timer2.Tick += TextStart;
@@ -68,26 +68,27 @@ namespace RandomApp.Pages
                 string? str = item.expander1.Header.ToString();
                 if (str.Length >= 6)
                 {
-                    string s = str.Substring(0, str.Length - 6);
-                    switch (s)
+                    string s1 = str.Substring(0, str.Length - 6);
+                    switch (s1)
                     {
                         case "Giải đặc biệt":
-                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/1)";
+                            item.expander1.Header = $"{s1} ({item.BonusList1.Count}/1)";
                             break;
                         case "Giải nhất":
-                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/2)";
+                            item.expander1.Header = $"{s1} ({item.BonusList1.Count}/2)";
                             break;
                         case "Giải nhì":
-                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/3)";
+                            item.expander1.Header = $"{s1} ({item.BonusList1.Count}/3)";
                             break;
                         case "Giải ba":
-                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/4)";
+                            item.expander1.Header = $"{s1} ({item.BonusList1.Count}/4)";
                             break;
                         case "Giải khuyến khích":
-                            item.expander1.Header = $"{s} ({item.BonusList1.Count}/5)";
+                            item.expander1.Header = $"{s1} ({item.BonusList1.Count}/5)";
                             break;
                     }
                 }
+
             }
         }
         private void Page3_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -229,33 +230,40 @@ namespace RandomApp.Pages
 
         private void CombApp_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
-            Btn1.IsEnabled = true;
+            if (CombApp.SelectedValue != null)
+            { 
 
-            if (prize5.Count < 5)
-            {
-                CombApp.SelectedValue = ListComboBox()[4];
+                txt1.Text = "Chào mừng đến với vòng quay " + CombApp.SelectedValue.ToString().ToLower();
+                Btn1.IsEnabled = true;
+
+                if (prize5.Count < 5)
+                {
+                    CombApp.SelectedValue = ListComboBox()[4];
+                }
+                else if (prize4.Count < 4)
+                {
+                    CombApp.SelectedValue = ListComboBox()[3];
+                }
+                else if (prize3.Count < 3)
+                {
+                    CombApp.SelectedValue = ListComboBox()[2];
+                }
+                else if (prize2.Count < 2)
+                {
+                    CombApp.SelectedValue = ListComboBox()[1];
+                }
+                else if (prize1.Count < 1)
+                {
+                    CombApp.SelectedValue = ListComboBox()[0];
+                }
+                else 
+                {
+                    Btn1.IsEnabled = false;
+                    CombApp.SelectedItem = null;
+                }
             }
-            else if (prize4.Count < 4)
-            {
-                CombApp.SelectedValue = ListComboBox()[3];
-            }
-            else if (prize3.Count < 3)
-            {
-                CombApp.SelectedValue = ListComboBox()[2];
-            }
-            else if (prize2.Count < 2)
-            {
-                CombApp.SelectedValue = ListComboBox()[1];
-            }
-            else if (prize1.Count < 1)
-            {
-                CombApp.SelectedValue = ListComboBox()[0];
-            }
-            else 
-            {
-                Btn1.IsEnabled = false;
-                MessageBox.Show("Vòng quay thưởng đã kết thúc. Chúc may mắn lần sau!"); 
+            else{
+                txt1.Text = "Vòng quay quay thưởng đã kết thúc. Chúc may mắn lần sau!";
             }
         }
 
@@ -269,7 +277,7 @@ namespace RandomApp.Pages
             count = 10;
             timer1.Start();
             timer2.Start();
-            await Task.Delay(1000);
+            await Task.Delay(10000);
             timer1.Stop();
             timer2.Stop();
             txt1.Text = "Xin chúc mừng nhân viên có mã số:";
